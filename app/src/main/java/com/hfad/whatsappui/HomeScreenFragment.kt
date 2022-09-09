@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.hfad.whatsappui.ui.theme.WhatsAppUITheme
 import com.hfad.whatsappui.ui.theme.WhatsappGreenDark
 import me.onebone.toolbar.CollapsingToolbarScaffold
@@ -36,8 +37,14 @@ class HomeScreenFragment : Fragment() {
 
         return ComposeView(requireContext()).apply {
             setContent {
-                WhatsAppUITheme() {
 
+                WhatsAppUITheme() {
+                    val systemUiController = rememberSystemUiController()
+                    SideEffect {
+                        systemUiController.setStatusBarColor(
+                            color = WhatsappGreenDark
+                        )
+                    }
                     Surface {
                         HomeScreenContent()
                     }
