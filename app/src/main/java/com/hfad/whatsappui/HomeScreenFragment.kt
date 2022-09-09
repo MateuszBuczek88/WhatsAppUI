@@ -7,11 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Send
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
@@ -118,5 +121,21 @@ fun Tabs() {
     }
 }
 
+@Composable
+fun FAB() {
+    Box(modifier = Modifier.fillMaxSize()) {
 
+        FloatingActionButton(
+            onClick = { /*TODO*/ },
+            modifier = Modifier
+                .padding(16.dp)
+                .align(Alignment.BottomEnd),
+            shape = CircleShape,
+            backgroundColor = WhatsappGreenDark,
+            elevation = FloatingActionButtonDefaults.elevation(8.dp)
+        ) {
+            Icon(imageVector = Icons.Filled.Send, contentDescription = "Start Chat")
+        }
+    }
+}
 
