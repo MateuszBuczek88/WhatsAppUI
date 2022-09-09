@@ -11,14 +11,14 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.hfad.whatsappui.ui.theme.WhatsAppUITheme
+import com.hfad.whatsappui.ui.theme.WhatsappGreenDark
 import me.onebone.toolbar.CollapsingToolbarScaffold
 import me.onebone.toolbar.ScrollStrategy
 import me.onebone.toolbar.rememberCollapsingToolbarScaffoldState
@@ -101,6 +101,21 @@ fun ToolBar() {
             }
         }
     )
+}
+
+@Composable
+fun Tabs() {
+    var tabIndex by remember { mutableStateOf(0) }
+    val tabTitles = listOf("CZATY", "STATUS", "POL")
+    Column {
+        TabRow(backgroundColor = WhatsappGreenDark, selectedTabIndex = tabIndex) {
+            tabTitles.forEachIndexed { index, title ->
+                Tab(selected = tabIndex == index,
+                    onClick = { tabIndex = index },
+                    text = { Text(text = title) })
+            }
+        }
+    }
 }
 
 
