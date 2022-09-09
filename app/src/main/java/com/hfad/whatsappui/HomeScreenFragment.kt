@@ -50,8 +50,10 @@ class HomeScreenFragment : Fragment() {
 
 @Composable
 fun HomeScreenContent() {
+    FAB()
+    val state = rememberCollapsingToolbarScaffoldState()
     Column {
-        val state = rememberCollapsingToolbarScaffoldState()
+
         CollapsingToolbarScaffold(modifier = Modifier.fillMaxSize(),
             state = state,
             scrollStrategy = ScrollStrategy.EnterAlways,
@@ -60,6 +62,9 @@ fun HomeScreenContent() {
             }) {
             Column {
 
+                Row {
+                    Tabs()
+                }
                 Row {
                     LazyColumn(
                         modifier = Modifier
