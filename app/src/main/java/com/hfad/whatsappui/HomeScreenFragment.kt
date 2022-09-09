@@ -19,6 +19,9 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.hfad.whatsappui.ui.theme.WhatsAppUITheme
+import me.onebone.toolbar.CollapsingToolbarScaffold
+import me.onebone.toolbar.ScrollStrategy
+import me.onebone.toolbar.rememberCollapsingToolbarScaffoldState
 
 
 class HomeScreenFragment : Fragment() {
@@ -44,7 +47,32 @@ class HomeScreenFragment : Fragment() {
 
 @Composable
 fun HomeScreenContent() {
-ToolBar()
+    Column {
+        val state = rememberCollapsingToolbarScaffoldState()
+        CollapsingToolbarScaffold(modifier = Modifier.fillMaxSize(),
+            state = state,
+            scrollStrategy = ScrollStrategy.EnterAlways,
+            toolbar = {
+                ToolBar()
+            }) {
+            Column {
+
+                Row {
+                    LazyColumn(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    ) {
+                        items(100) {
+                            Text(
+                                text = "Item $it",
+                                modifier = Modifier.padding(8.dp)
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 @Composable
