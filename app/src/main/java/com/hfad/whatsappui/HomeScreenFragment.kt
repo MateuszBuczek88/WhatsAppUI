@@ -1,7 +1,6 @@
 package com.hfad.whatsappui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,12 +20,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.layout.AlignmentLine
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.fragment.app.Fragment
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.hfad.whatsappui.ui.theme.WhatsAppUITheme
 import com.hfad.whatsappui.ui.theme.WhatsappGreenDark
@@ -40,7 +39,7 @@ class HomeScreenFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         return ComposeView(requireContext()).apply {
             setContent {
@@ -79,12 +78,11 @@ fun HomeScreenContent() {
                 Row {
                     Tabs()
                 }
-                Row() {
+                Row {
                     LazyColumn(Modifier.fillMaxWidth()
 
                     ) {
-                        items(10) {
-
+                        items(count=25) {
                             ChatItem()
                         }
                     }
@@ -174,20 +172,16 @@ fun ChatItem() {
                 modifier = Modifier
                     .size(60.dp)
                     .clip(CircleShape)
-
-
             )
             Column(Modifier.padding(top = 2.dp, bottom = 2.dp)) {
 
                 Text(
-
                     text = "Name",
                     fontWeight = FontWeight.Bold,
                     fontSize = 16.sp
                 )
 
                 Spacer(modifier = Modifier.weight(1.0f))
-
 
                 Text(
                     text = "last message",
@@ -204,10 +198,7 @@ fun ChatItem() {
                     color = Color.DarkGray,
                     fontSize = 10.sp)
             }
-
-
         }
-        
     }
 }
 
@@ -221,9 +212,8 @@ fun ChatItemPreview() {
 @Preview(showBackground = true)
 @Composable
 fun HomeScreenPreview() {
-    WhatsAppUITheme() {
+    WhatsAppUITheme {
         HomeScreenContent()
-
     }
 }
 
